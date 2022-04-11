@@ -19,6 +19,7 @@ app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
