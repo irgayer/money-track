@@ -1,0 +1,15 @@
+extends ../layout
+
+block layout-content
+    h1 Sign In
+    form(method="post", action="/auth/signin")
+        div.mb-3
+            label(class="form-label" for="username") Username
+            input(type="text", id="username", class="form-control" required=true)
+        div.mb-3
+            label(class="form-label", for="password") Password
+            input(type="password", id="password", class="form-control" required=true)
+        button(type="submit", class="btn btn-primary") Go!
+    div.text-center
+        p Not registered?
+            a(href="/auth/signup") Sign up
