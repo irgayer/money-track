@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+require('dotenv').config();
 
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
@@ -21,8 +22,8 @@ app.use('/banks', banksRouter);
 app.use('/categories', categoriesRouter);
 app.use('/auth', authRouter);
 
-app.listen(3000, function() {
-    console.log("server is on localhost:3000");
+app.listen(process.env.PORT, function() {
+    console.log("server is on localhost:" + process.env.PORT);
 });
 
 export { app };
