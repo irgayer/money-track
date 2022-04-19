@@ -43,6 +43,9 @@ model Account {
   userId Int
   User User @relation(fields: [userId], references: [id])
 
+  amount Decimal @default(0)
+  currency String? @default("USD")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
