@@ -14,7 +14,7 @@ router.route('/')
   .get(async (req: express.Request, res: express.Response) => {
     const id = req.body.id;
 
-    const accounts = await prisma.account.findMany({ where: { userId: id } })
+    const accounts = await prisma.account.findMany()
     try {
       sendRequest().then(async data => {
         accounts.forEach(x => {

@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Account" ALTER COLUMN "amount" SET DEFAULT 0,
-ALTER COLUMN "amount" SET DATA TYPE DECIMAL(65,30);
