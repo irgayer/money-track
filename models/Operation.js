@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {Schema} = require("mongoose");
 
 const schema = new mongoose.Schema({
     description: {
@@ -16,6 +17,10 @@ const schema = new mongoose.Schema({
     account: {
         type: Schema.Types.ObjectId,
         ref: "Account"
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 });
 
