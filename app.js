@@ -5,12 +5,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dbConfig = require('./config/database.config');
 var mongoose = require('mongoose');
+var {check} = require('express-validator');
 
 var AccountController = require('./controllers/AccountController');
 var CategoryController = require('./controllers/CategoryController');
+var AuthController = require('./controllers/AuthController');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const categoriesRouter = require('./routes/categories');
+const accountsRouter = require('./routes/accounts');
+const authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -34,17 +39,11 @@ app.use(cookieParser());
 app.use("/css", express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/accounts', AccountController.all);
-app.post('/accounts', AccountController.create);
-app.delete('/accounts/:id', AccountController.delete);
-
-app.get('/categories', CategoryController.all);
-app.post('/categories', CategoryController.create);
-app.delete('/categories/:id', CategoryController.delete);
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/categories', categoriesRouter);
+app.use('/accounts', accountsRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
