@@ -11,7 +11,7 @@ router.post('/', [
     check("amount", "amount can not be empty").isNumeric().notEmpty(),
     AuthMiddleware
 ], OperationController.create);
-router.get('/outcomes', [AuthMiddleware], OperationController.outcomes);
-router.get('/incomes', [AuthMiddleware], OperationController.incomes);
-
+//router.get('/outcomes', [AuthMiddleware], OperationController.outcomes);
+//router.get('/incomes', [AuthMiddleware], OperationController.incomes);
+router.delete('/:id', [AuthMiddleware], OperationController.delete);
 module.exports = router;

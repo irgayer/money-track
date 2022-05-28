@@ -1,28 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var dbConfig = require('./config/database.config');
-var mongoose = require('mongoose');
-var {check} = require('express-validator');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const dbConfig = require('./config/database.config');
+const mongoose = require('mongoose');
+const {check} = require('express-validator');
 const cors = require('cors');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
-
-const authMiddleware = require('./middlewares/authMiddleware');
-
-var AccountController = require('./controllers/AccountController');
-var CategoryController = require('./controllers/CategoryController');
-var AuthController = require('./controllers/AuthController');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
 const accountsRouter = require('./routes/accounts');
 const authRouter = require('./routes/auth');
 const operationsRouter = require('./routes/operations');
+const swagger = require('./swagger.json');
+const app = express();
 
-var app = express();
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swagger));
 
 mongoose.connect(dbConfig.url, {
   useNewUrlParser: true
