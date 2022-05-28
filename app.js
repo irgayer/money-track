@@ -6,6 +6,10 @@ var logger = require('morgan');
 var dbConfig = require('./config/database.config');
 var mongoose = require('mongoose');
 var {check} = require('express-validator');
+const cors = require('cors');
+
+
+const authMiddleware = require('./middlewares/authMiddleware');
 
 var AccountController = require('./controllers/AccountController');
 var CategoryController = require('./controllers/CategoryController');
@@ -16,6 +20,7 @@ var usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
 const accountsRouter = require('./routes/accounts');
 const authRouter = require('./routes/auth');
+const operationsRouter = require('./routes/operations');
 
 var app = express();
 
@@ -32,6 +37,7 @@ mongoose.connect(dbConfig.url, {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,6 +50,7 @@ app.use('/users', usersRouter);
 app.use('/categories', categoriesRouter);
 app.use('/accounts', accountsRouter);
 app.use('/auth', authRouter);
+app.use('/operations', operationsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

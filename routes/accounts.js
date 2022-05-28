@@ -8,7 +8,7 @@ router.get('/', [AuthMiddleware], AccountController.all);
 
 router.post('/', [
     check("name", "name can not be empty").notEmpty(),
-    check("categoryType", "categoryType can not be empty").notEmpty(),
+    check("amount", "amount can not be empty").isNumeric().notEmpty(),
     AuthMiddleware
 ],AccountController.create);
 router.delete('/:id', [AuthMiddleware], AccountController.delete);
